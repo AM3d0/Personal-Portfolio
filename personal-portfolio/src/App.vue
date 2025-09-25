@@ -1,15 +1,50 @@
 <script setup>
 import { ref, onMounted } from "vue";
+import { MyBBFService } from '@/services/MyBBFService.js';
+
+const bbfData = ref();
+const responsiveOptions = ref([
+  {
+    breakpoint: '1400px',
+    numVisible: 1,
+    numScroll: 1
+  },
+  {
+    breakpoint: '1199px',
+    numVisible: 1,
+    numScroll: 1
+  },
+  {
+    breakpoint: '767px',
+    numVisible: 1,
+    numScroll: 1
+  },
+  {
+    breakpoint: '575px',
+    numVisible: 1,
+    numScroll: 1
+  }
+]);
 
 const fullText = "Willkommen auf meiner Website!";
 const displayedText = ref("");
 const active = ref('home')
 
 function scrollTo(id) {
-  active.value = id
-  document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+  active.value = id;
+  const element = document.getElementById(id);
+  const headerOffset = 240;
+  const elementPosition = element.getBoundingClientRect().top;
+  const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+  window.scrollTo({
+    top: offsetPosition,
+    behavior: "smooth"
+  });
 }
 
+
+// type animation of welcome text
 onMounted(() => {
   let index = 0;
   const interval = setInterval(() => {
@@ -17,46 +52,238 @@ onMounted(() => {
     index++;
     if (index === fullText.length) clearInterval(interval);
   }, 50);
+  bbfData.value = MyBBFService.getMyBBFData().slice(0, 3);
 });
 </script>
 
 <template>
   <div class='min-h-screen bg-gradient-to-br from-purple-900 to-black'>
-    <div class="card">
-      <Toolbar class='!bg-gray-900 !border-cyan-900 shadow-md shadow-purple-500' style="padding: 1rem 1rem 1rem 1.5rem">
-        <template #start>
-          <div class="flex items-center gap-4">
-            <Avatar class="rounded-full" image='/images/pb.jpeg' style="width: 70px; height: 70px; border-radius:9999px; overflow:hidden;" />
-            <h1 class='font-mono tracking-widest text-purple-500 text-3xl ml-4 drop-shadow-[0_0_10px_#a855f7]'>Ahmed
-              Alamoudi</h1>
-          </div>
-        </template>
-        <template #end>
-          <div class="flex items-center gap-2">
-            <Button label="Home" text plain @click="scrollTo('home')"
-              :class="active === 'home' ? 'text-purple-400! font-bold! border-2! border-b-purple-400! bg-transparent!' : 'text-white! opacity-85! hover:text-purple-200! bg-transparent!'" />
-            <Button label="About" text plain @click="scrollTo('about')"
-              :class="active === 'about' ? 'text-purple-400! font-bold! border-2! border-b-purple-400! bg-transparent!' : 'text-white! opacity-85! hover:text-purple-200! bg-transparent!'" />
-            <Button label="Projects" text plain @click="scrollTo('projects')"
-              :class="active === 'projects' ? 'text-purple-400! font-bold! border-2! border-b-purple-400! bg-transparent!' : 'text-white! opacity-85! hover:text-purple-200! bg-transparent!'" />
-            <Button label="Skills" text plain @click="scrollTo('skills')"
-              :class="active === 'skills' ? 'text-purple-400! font-bold! border-2! border-b-purple-400! bg-transparent!' : 'text-white! opacity-85! hover:text-purple-200! bg-transparent!'" />
-            <Button label="Contact" text plain @click="scrollTo('contact')"
-              :class="active === 'contact' ? 'text-purple-400! font-bold! border-2! border-b-purple-400! bg-transparent!' : 'text-white! opacity-85! hover:text-purple-200! bg-transparent!'" />
-          </div>
-        </template>
-      </Toolbar>
-    </div>
+    <!----Toolbar------------------------------------------------------------------->
+    <Toolbar class='!sticky !top-0 !z-50 !bg-gray-900 !border-cyan-900 shadow-md shadow-purple-500'
+      style="padding: 1rem 1rem 1rem 1.5rem">
+      <!----Image + Name------------------------------------------------------------------->
+      <template #start>
+        <div class="flex items-center gap-4">
+          <Avatar class="rounded-full" image='/images/pb.jpeg'
+            style="height:50px; width: 50px; border-radius:9999px; overflow:hidden;" />
+          <h1 class='text-xl sm:text-3xl font-mono tracking-widest text-purple-500 ml-4 drop-shadow-[0_0_10px_#a855f7]'>
+            Ahmed
+            Alamoudi</h1>
+        </div>
+      </template>
+      <!----Tabs------------------------------------------------------------------->
+      <template #end>
+        <div class="grid grid-cols-3 sm:items-center gap-0 sm:gap-2 sm:flex sm:flex-wrap">
+          <Button label="Home" text plain @click="scrollTo('home')"
+            :class="active === 'home' ? 'text-xs! sm:text-base! text-purple-400! font-bold! border-2! border-b-purple-400! bg-transparent!' : 'text-xs! sm:text-base! text-white! opacity-85! hover:text-purple-200! bg-transparent!'" />
+          <Button label="About" text plain @click="scrollTo('about')"
+            :class="active === 'about' ? 'text-xs! sm:text-base! text-purple-400! font-bold! border-2! border-b-purple-400! bg-transparent!' : 'text-xs! sm:text-base! text-white! opacity-85! hover:text-purple-200! bg-transparent!'" />
+          <Button label="Projects" text plain @click="scrollTo('projects')"
+            :class="active === 'projects' ? 'text-xs! sm:text-base! text-purple-400! font-bold! border-2! border-b-purple-400! bg-transparent!' : 'text-xs! sm:text-base! text-white! opacity-85! hover:text-purple-200! bg-transparent!'" />
+          <Button label="Skills" text plain @click="scrollTo('skills')"
+            :class="active === 'skills' ? 'text-xs! sm:text-base! text-purple-400! font-bold! border-2! border-b-purple-400! bg-transparent!' : 'text-xs! sm:text-base! text-white! opacity-85! hover:text-purple-200! bg-transparent!'" />
+          <Button label="Contact" text plain @click="scrollTo('contact')"
+            :class="active === 'contact' ? 'text-xs! sm:text-base! text-purple-400! font-bold! border-2! border-b-purple-400! bg-transparent!' : 'text-xs! sm:text-base! text-white! opacity-85! hover:text-purple-200! bg-transparent!'" />
+        </div>
+      </template>
+    </Toolbar>
+
+    <!-- <div class="card sm:hidden bg-transparent">
+      <Menubar :model="items" class="!bg-transparent !border-0 shadow-none" />
+    </div> -->
+
+
+    <!----Home------------------------------------------------------------------->
     <section id='home' class='mt-20 flex-col justify-center'>
       <h1
-        class='text-5xl text-center font-bold bg-gradient-to-r from-white via-purple-400 to-purple-600 bg-clip-text text-transparent'>
+        class='text-2xl sm:text-2xl md:text-4xl lg:text-5xl text-center font-bold bg-gradient-to-r from-white via-purple-400 to-purple-600 bg-clip-text text-transparent'>
         {{ displayedText }}</h1>
-      <h3 class='mt-8 text-xl text-center text-white'>Informatik Student an der Albert-Ludwigs-Universität</h3>
-      <h3 class='mt-4 text-l text-center text-white'>Von spannenden Projekten bis zu praktischen Skills <br> – <br> Hier
+      <h3 class='mt-8 text-sm sm:text-base md:text-lg lg:text-xl text-center text-white'>Informatik Student an der
+        Albert-Ludwigs-Universität</h3>
+      <h3 class='mt-4 text-xs sm:text-sm md:text-base lg:text-lg text-center text-white'>Von spannenden Projekten bis zu
+        praktischen Skills <br> – <br> Hier
         bekommst
         du einen Einblick in meine Arbeit als Informatik-Student</h3>
+      <div class="card flex flex-col items-center gap-4 mt-10">
+        <div class="flex flex-wrap gap-4 justify-center">
+          <Button class='bg-purple-300! border border-white! rounded-2xl! text-white!' label="Contact Me" icon="pi pi-user" />
+          <a href="/pdfs/Harvard_Zertifikat.pdf" download>
+            <Button class='bg-transparent! border border-purple-100! rounded-2xl! text-white!' label="Download CV"
+              icon="pi pi-user" />
+          </a>
+        </div>
+      </div>
+    </section>
+    <!----Projects------------------------------------------------------------------->
+    <h1
+      class='mt-35 text-2xl sm:text-2xl md:text-4xl lg:text-5xl text-center font-bold bg-gradient-to-r from-white via-purple-400 to-purple-600 bg-clip-text text-transparent leading-snug md:leading-snug lg:leading-snug'>
+      Meine Projekte</h1>
+    <section id='projects'
+      class='mt-20 grid grid-cols-1 gap-2 w-max mx-auto sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3'>
+      <div class="card " style="width: 400px;">
+        <Carousel :value="bbfData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
+          class="relative custom-carousel">
+          <template #item="slotProps">
+            <div class="border border-surface-200 rounded-xl m-2 relative transition duration-100 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
+                  bg-gradient-to-br from-gray-900/50 to-purple-900/30
+                  backdrop-blur-sm">
+              <div class="mb-4">
+                <img :src="'https://primefaces.org/cdn/primevue/images/product/' + slotProps.data.image"
+                  :alt="slotProps.data.name" class="w-full h-60 object-cover rounded-t-xl" />
+              </div>
+              <div class="flex flex-col justify-between items-center">
+                <div class="font-medium text-white">{{ slotProps.data.name }}</div>
+                <div class="m-5 font-semibold text-sm text-white">
+                  Dies ist eine lange Beschreibung. Dies ist eine lange BeschreibungDies ist eine lange BeschreibungDies
+                  ist eine lange BeschreibungDies ist eine lange Beschreibung
+                </div>
+              </div>
+            </div>
+          </template>
+        </Carousel>
+
+      </div>
+      <div class="card " style="width: 400px;">
+        <Carousel :value="bbfData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
+          class="relative custom-carousel">
+          <template #item="slotProps">
+            <div class="border border-surface-200 rounded-xl m-2 relative transition delay-150 duration-300 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
+                  bg-gradient-to-br from-gray-900/50 to-purple-900/30
+                  backdrop-blur-sm">
+              <div class="mb-4">
+                <img :src="'https://primefaces.org/cdn/primevue/images/product/' + slotProps.data.image"
+                  :alt="slotProps.data.name" class="w-full h-60 object-cover rounded-t-xl" />
+              </div>
+              <div class="flex flex-col justify-between items-center">
+                <div class="font-medium text-white">{{ slotProps.data.name }}</div>
+                <div class="m-5 font-semibold text-sm text-white">
+                  Dies ist eine lange Beschreibung. Dies ist eine lange BeschreibungDies ist eine lange BeschreibungDies
+                  ist eine lange BeschreibungDies ist eine lange Beschreibung
+                </div>
+              </div>
+            </div>
+          </template>
+        </Carousel>
+
+      </div>
+      <div class="card " style="width: 400px;">
+        <Carousel :value="bbfData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
+          class="relative custom-carousel">
+          <template #item="slotProps">
+            <div class="border border-surface-200 rounded-xl m-2 relative transition delay-150 duration-300 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
+                  bg-gradient-to-br from-gray-900/50 to-purple-900/30
+                  backdrop-blur-sm">
+              <div class="mb-4">
+                <img :src="'https://primefaces.org/cdn/primevue/images/product/' + slotProps.data.image"
+                  :alt="slotProps.data.name" class="w-full h-60 object-cover rounded-t-xl" />
+              </div>
+              <div class="flex flex-col justify-between items-center">
+                <div class="font-medium text-white">{{ slotProps.data.name }}</div>
+                <div class="m-5 font-semibold text-sm text-white">
+                  Dies ist eine lange Beschreibung. Dies ist eine lange BeschreibungDies ist eine lange BeschreibungDies
+                  ist eine lange BeschreibungDies ist eine lange Beschreibung
+                </div>
+              </div>
+            </div>
+          </template>
+        </Carousel>
+
+      </div>
+      <div class="card" style="width: 400px;">
+        <Carousel :value="bbfData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
+          class="relative custom-carousel">
+          <template #item="slotProps">
+            <div class="border border-surface-200 rounded-xl m-2 relative transition duration-100 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
+                  bg-gradient-to-br from-gray-900/50 to-purple-900/30
+                  backdrop-blur-sm">
+              <div class="mb-4">
+                <img :src="'https://primefaces.org/cdn/primevue/images/product/' + slotProps.data.image"
+                  :alt="slotProps.data.name" class="w-full h-60 object-cover rounded-t-xl" />
+              </div>
+              <div class="flex flex-col justify-between items-center">
+                <div class="font-medium text-white">{{ slotProps.data.name }}</div>
+                <div class="m-5 font-semibold text-sm text-white">
+                  Dies ist eine lange Beschreibung. Dies ist eine lange BeschreibungDies ist eine lange BeschreibungDies
+                  ist eine lange BeschreibungDies ist eine lange Beschreibung
+                </div>
+              </div>
+            </div>
+          </template>
+        </Carousel>
+
+      </div>
+      <div class="card " style="width: 400px;">
+        <Carousel :value="bbfData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
+          class="relative custom-carousel">
+          <template #item="slotProps">
+            <div class="border border-surface-200 rounded-xl m-2 relative transition duration-100 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
+                  bg-gradient-to-br from-gray-900/50 to-purple-900/30
+                  backdrop-blur-sm">
+              <div class="mb-4">
+                <img :src="'https://primefaces.org/cdn/primevue/images/product/' + slotProps.data.image"
+                  :alt="slotProps.data.name" class="w-full h-60 object-cover rounded-t-xl" />
+              </div>
+              <div class="flex flex-col justify-between items-center">
+                <div class="font-medium text-white">{{ slotProps.data.name }}</div>
+                <div class="m-5 font-semibold text-sm text-white">
+                  Dies ist eine lange Beschreibung. Dies ist eine lange BeschreibungDies ist eine lange BeschreibungDies
+                  ist eine lange BeschreibungDies ist eine lange Beschreibung
+                </div>
+              </div>
+            </div>
+          </template>
+        </Carousel>
+
+      </div>
+      <div class="card " style="width: 400px;">
+        <Carousel :value="bbfData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
+          class="relative custom-carousel">
+          <template #item="slotProps">
+            <div class="border border-surface-200 rounded-xl m-2 relative transition duration-100 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
+                  bg-gradient-to-br from-gray-900/50 to-purple-900/30
+                  backdrop-blur-sm">
+              <div class="mb-4">
+                <img :src="'https://primefaces.org/cdn/primevue/images/product/' + slotProps.data.image"
+                  :alt="slotProps.data.name" class="w-full h-60 object-cover rounded-t-xl" />
+              </div>
+              <div class="flex flex-col justify-between items-center">
+                <div class="font-medium text-white">{{ slotProps.data.name }}</div>
+                <div class="m-5 font-semibold text-sm text-white">
+                  Dies ist eine lange Beschreibung. Dies ist eine lange BeschreibungDies ist eine lange BeschreibungDies
+                  ist eine lange BeschreibungDies ist eine lange Beschreibung
+                </div>
+              </div>
+            </div>
+          </template>
+        </Carousel>
+
+      </div>
+
     </section>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+:deep(.p-carousel .p-carousel-next-button) {
+  color: white !important;
+}
+
+:deep(.p-carousel .p-carousel-prev-button) {
+  color: white !important;
+}
+
+:deep(.p-carousel .p-carousel-next-button:hover) {
+  background-color: #9333ea !important;
+}
+
+:deep(.p-carousel .p-carousel-prev-button:hover) {
+  background-color: #9333ea !important;
+}
+
+.custom-carousel {
+  --p-carousel-indicator-background: #9ca3af;
+  --p-carousel-indicator-hover-background: #a855f7;
+  --p-carousel-indicator-active-background: #a855f7;
+  --p-carousel-indicator-width: 20px;
+}
+</style>
