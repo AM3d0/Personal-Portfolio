@@ -12,12 +12,11 @@ import Button from "primevue/button";
 import IconField from 'primevue/iconfield';
 import InputIcon from 'primevue/inputicon';
 import Avatar from 'primevue/avatar';
-import AnimateOnScroll from 'primevue/animateonscroll';
 import Carousel from 'primevue/carousel';
 import Menubar from 'primevue/menubar';
 import Menu from 'primevue/menu';
-
 import TieredMenu from 'primevue/tieredmenu';
+import AnimateOnScroll from 'primevue/animateonscroll';
 
 
 
@@ -33,12 +32,11 @@ app.component('Toolbar', Toolbar);
 app.component('IconField', IconField);
 app.component('InputIcon', InputIcon);
 app.component('Avatar', Avatar);
-app.component('AnimateOnScroll', AnimateOnScroll);
 app.component('Carousel', Carousel);
 app.component('Menubar', Menubar);
 app.component('Menu', Menu);
 app.component('TieredMenu', TieredMenu);
-
+app.directive('animateonscroll', AnimateOnScroll);
 
 
 app.use(PrimeVue, {
@@ -46,6 +44,5 @@ app.use(PrimeVue, {
         preset: Aura
     }
 });
-
 app.mount('#app');
 

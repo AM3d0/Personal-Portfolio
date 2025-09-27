@@ -43,9 +43,36 @@ function scrollTo(id) {
   });
 }
 
+let observer;
+
+const initIntersectionObserver = () => {
+  const options = {
+    root: null,
+    rootMargin: '-20% 0px -70% 0px',
+    threshold: 0
+  };
+
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        active.value = entry.target.id;
+      }
+    });
+  }, options);
+
+  const sections = ['home', 'about', 'projects', 'skills', 'contact'];
+  sections.forEach(sectionId => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      observer.observe(element);
+    }
+  });
+};
+
 
 // type animation of welcome text
 onMounted(() => {
+
   let index = 0;
   const interval = setInterval(() => {
     displayedText.value += fullText[index];
@@ -53,6 +80,8 @@ onMounted(() => {
     if (index === fullText.length) clearInterval(interval);
   }, 50);
   bbfData.value = MyBBFService.getMyBBFData().slice(0, 3);
+  setTimeout(initIntersectionObserver, 100);
+
 });
 </script>
 
@@ -106,7 +135,8 @@ onMounted(() => {
         du einen Einblick in meine Arbeit als Informatik-Student</h3>
       <div class="card flex flex-col items-center gap-4 mt-10">
         <div class="flex flex-wrap gap-4 justify-center">
-          <Button class='bg-purple-300! border border-white! rounded-2xl! text-white!' label="Contact Me" icon="pi pi-user" />
+          <Button class='bg-purple-300! border border-white! rounded-2xl! text-white!' label="Contact Me"
+            icon="pi pi-user" />
           <a href="/pdfs/Harvard_Zertifikat.pdf" download>
             <Button class='bg-transparent! border border-purple-100! rounded-2xl! text-white!' label="Download CV"
               icon="pi pi-user" />
@@ -120,7 +150,9 @@ onMounted(() => {
       Meine Projekte</h1>
     <section id='projects'
       class='mt-20 grid grid-cols-1 gap-2 w-max mx-auto sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3'>
-      <div class="card " style="width: 400px;">
+      <div class="card"
+        v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 slide-in-from-l-8 animate-duration-1000', leaveClass: 'animate-leave fade-out-0' }"
+        style="width: 400px;">
         <Carousel :value="bbfData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
           class="relative custom-carousel">
           <template #item="slotProps">
@@ -143,7 +175,9 @@ onMounted(() => {
         </Carousel>
 
       </div>
-      <div class="card " style="width: 400px;">
+      <div class="card"
+        v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 animate-duration-1000', leaveClass: 'animate-leave fade-out-0' }"
+        style="width: 400px;">
         <Carousel :value="bbfData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
           class="relative custom-carousel">
           <template #item="slotProps">
@@ -166,7 +200,9 @@ onMounted(() => {
         </Carousel>
 
       </div>
-      <div class="card " style="width: 400px;">
+      <div class="card"
+        v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 slide-in-from-r-8 animate-duration-1000', leaveClass: 'animate-leave fade-out-0' }"
+        style="width: 400px;">
         <Carousel :value="bbfData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
           class="relative custom-carousel">
           <template #item="slotProps">
@@ -189,7 +225,9 @@ onMounted(() => {
         </Carousel>
 
       </div>
-      <div class="card" style="width: 400px;">
+      <div class="card"
+        v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 slide-in-from-t-20 animate-duration-1000' }"
+        style="width: 400px;">
         <Carousel :value="bbfData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
           class="relative custom-carousel">
           <template #item="slotProps">
@@ -212,11 +250,13 @@ onMounted(() => {
         </Carousel>
 
       </div>
-      <div class="card " style="width: 400px;">
+      <div class="card"
+        v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 zoom-in-50 slide-in-from-t-20 animate-duration-1000' }"
+        style="width: 400px;">
         <Carousel :value="bbfData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
           class="relative custom-carousel">
           <template #item="slotProps">
-            <div class="border border-surface-200 rounded-xl m-2 relative transition duration-100 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
+            <div class="border border-surface-200 rounded-xl m-2 relative transition delay-150 duration-300 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
                   bg-gradient-to-br from-gray-900/50 to-purple-900/30
                   backdrop-blur-sm">
               <div class="mb-4">
@@ -235,11 +275,13 @@ onMounted(() => {
         </Carousel>
 
       </div>
-      <div class="card " style="width: 400px;">
+      <div class="card"
+        v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 slide-in-from-t-20 animate-duration-1000' }"
+        style="width: 400px;">
         <Carousel :value="bbfData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
           class="relative custom-carousel">
           <template #item="slotProps">
-            <div class="border border-surface-200 rounded-xl m-2 relative transition duration-100 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
+            <div class="border border-surface-200 rounded-xl m-2 relative transition delay-150 duration-300 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
                   bg-gradient-to-br from-gray-900/50 to-purple-900/30
                   backdrop-blur-sm">
               <div class="mb-4">
