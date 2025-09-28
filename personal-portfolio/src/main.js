@@ -17,6 +17,7 @@ import Menubar from 'primevue/menubar';
 import Menu from 'primevue/menu';
 import TieredMenu from 'primevue/tieredmenu';
 import AnimateOnScroll from 'primevue/animateonscroll';
+import Card from 'primevue/card';
 
 
 
@@ -35,6 +36,7 @@ app.component('Avatar', Avatar);
 app.component('Carousel', Carousel);
 app.component('Menubar', Menubar);
 app.component('Menu', Menu);
+app.component('Card', Card);
 app.component('TieredMenu', TieredMenu);
 app.directive('animateonscroll', AnimateOnScroll);
 
