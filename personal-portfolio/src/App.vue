@@ -29,13 +29,24 @@ const responsiveOptions = ref([
 const fullText = "Willkommen auf meiner Website!";
 const displayedText = ref("");
 const active = ref('home');
-const isManualScroll = ref(false); 
+const isManualScroll = ref(false);
 
-function scrollTo(id) {
-  isManualScroll.value = true; 
+function getOffset() {
+  if (window.innerWidth < 640) {
+    return 165;
+  } else if (window.innerWidth < 1024) {
+    return 165;
+  } else {
+    return 100;
+  }
+}
+
+
+function scrollTo(id, offSet) {
+  isManualScroll.value = true;
   active.value = id;
   const element = document.getElementById(id);
-  const headerOffset = 240;
+  const headerOffset = offSet;
   const elementPosition = element.getBoundingClientRect().top;
   const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -60,7 +71,7 @@ const initIntersectionObserver = () => {
 
   observer = new IntersectionObserver((entries) => {
     if (isManualScroll.value) return;
-    
+
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         active.value = entry.target.id;
@@ -107,15 +118,15 @@ onMounted(() => {
       <!----Tabs------------------------------------------------------------------->
       <template #end>
         <div class="grid grid-cols-3 sm:items-center gap-0 sm:gap-2 sm:flex sm:flex-wrap">
-          <Button label="Home" text plain @click="scrollTo('home')"
+          <Button label="Home" text plain @click="scrollTo('home', getOffset())"
             :class="active === 'home' ? 'text-xs! sm:text-base! text-purple-400! font-bold! border-2! border-b-purple-400! bg-transparent!' : 'text-xs! sm:text-base! text-white! opacity-85! hover:text-purple-200! bg-transparent!'" />
-          <Button label="About" text plain @click="scrollTo('about')"
+          <Button label="About" text plain @click="scrollTo('about', getOffset())"
             :class="active === 'about' ? 'text-xs! sm:text-base! text-purple-400! font-bold! border-2! border-b-purple-400! bg-transparent!' : 'text-xs! sm:text-base! text-white! opacity-85! hover:text-purple-200! bg-transparent!'" />
-          <Button label="Projects" text plain @click="scrollTo('projects')"
+          <Button label="Projects" text plain @click="scrollTo('projects', getOffset())"
             :class="active === 'projects' ? 'text-xs! sm:text-base! text-purple-400! font-bold! border-2! border-b-purple-400! bg-transparent!' : 'text-xs! sm:text-base! text-white! opacity-85! hover:text-purple-200! bg-transparent!'" />
-          <Button label="Skills" text plain @click="scrollTo('skills')"
+          <Button label="Skills" text plain @click="scrollTo('skills', getOffset())"
             :class="active === 'skills' ? 'text-xs! sm:text-base! text-purple-400! font-bold! border-2! border-b-purple-400! bg-transparent!' : 'text-xs! sm:text-base! text-white! opacity-85! hover:text-purple-200! bg-transparent!'" />
-          <Button label="Contact" text plain @click="scrollTo('contact')"
+          <Button label="Contact" text plain @click="scrollTo('contact', getOffset())"
             :class="active === 'contact' ? 'text-xs! sm:text-base! text-purple-400! font-bold! border-2! border-b-purple-400! bg-transparent!' : 'text-xs! sm:text-base! text-white! opacity-85! hover:text-purple-200! bg-transparent!'" />
         </div>
       </template>
@@ -146,9 +157,11 @@ onMounted(() => {
     <!----About me------------------------------------------------------------------->
     <section id='about' class='mt-30 flex-col justify-center'>
       <h1
-        class='text-2xl sm:text-2xl md:text-4xl lg:text-5xl text-center font-bold bg-gradient-to-r from-white via-purple-400 to-purple-600 bg-clip-text text-transparent' v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 animate-duration-1000', leaveClass: 'animate-leave fade-out-0' }">
+        class='text-2xl sm:text-2xl md:text-4xl lg:text-5xl text-center font-bold bg-gradient-to-r from-white via-purple-400 to-purple-600 bg-clip-text text-transparent'
+        v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 animate-duration-1000', leaveClass: 'animate-leave fade-out-0' }">
         About me</h1>
-      <h3 class='mt-8 pr-20 pl-20 sm:pr-60 sm:pl-60 text-xs sm:text-sm sm:text-base md:text-lg lg:text-xl text-center text-white'
+      <h3
+        class='mt-8 pr-20 pl-20 sm:pr-60 sm:pl-60 text-xs sm:text-sm sm:text-base md:text-lg lg:text-xl text-center text-white'
         v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 animate-duration-1000', leaveClass: 'animate-leave fade-out-0' }">
         Mein Name ist Ahmed
         Alamoudi,
@@ -158,7 +171,7 @@ onMounted(() => {
         ermöglicht mir, kontinuierlich neues Wissen aufzubauen und meine Fähigkeiten stetig zu erweitern. Einen Einblick
         in
         einige meiner Projekte gebe ich im entsprechenden Abschnitt.</h3>
-      <div class='flex flex-row justify-center mt-15 gap-2 sm:gap-4'>
+      <div class='flex flex-row justify-center m-5 mt-15 gap-2 sm:gap-4'>
         <Card class='!bg-black/50 border border-white'
           v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 animate-duration-500', leaveClass: 'animate-leave fade-out-0' }">
           <template #content>
@@ -166,7 +179,7 @@ onMounted(() => {
               <p class="text-purple-600 text-center text-sm sm:text-xl font-bold">
                 1+
               </p>
-              <p class="m-0 text-white text-sm">
+              <p class="pt-2 text-white text-center text-xs sm:text-sm">
                 Years experience
               </p>
             </div>
@@ -178,10 +191,10 @@ onMounted(() => {
           <template #content>
             <div class='flex flex-col justiy-center'>
               <p class="text-purple-600 text-center text-sm sm:text-xl font-bold">
-                1+
+                20+
               </p>
-              <p class="m-0 text-white text-sm">
-                Years experience
+              <p class="pt-2 text-white text-center text-xs sm:text-sm">
+                Projects completed
               </p>
             </div>
 
@@ -192,10 +205,10 @@ onMounted(() => {
           <template #content>
             <div class='flex flex-col justiy-center'>
               <p class="text-purple-600 text-center text-sm sm:text-xl font-bold">
-                1+
+                5+
               </p>
-              <p class="m-0 text-white text-sm">
-                Years experience
+              <p class="pt-2 text-white text-center text-xs sm:text-sm">
+                Languages learned
               </p>
             </div>
 
@@ -204,164 +217,289 @@ onMounted(() => {
       </div>
     </section>
     <!----Projects------------------------------------------------------------------->
-    <h1 v-animateonscroll="{
-      enterClass: 'animate-enter fade-in-10 slide-in-from-t-20 animate-duration-1000 ', once: true
-    }"
-      class='mt-45 text-2xl sm:text-2xl md:text-4xl lg:text-5xl text-center font-bold bg-gradient-to-r from-white via-purple-400 to-purple-600 bg-clip-text text-transparent leading-snug md:leading-snug lg:leading-snug'>
-      Meine Projekte</h1>
-    <section id='projects'
-      class='mt-20 grid grid-cols-1 gap-2 w-max mx-auto sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3'>
-      <div class="card"
-        v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 slide-in-from-l-8 animate-duration-1000', once: true }"
-        style="width: 400px;">
-        <Carousel :value="bbfData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
-          class="relative custom-carousel">
-          <template #item="slotProps">
-            <div class="border border-surface-200 rounded-xl m-2 relative transition duration-100 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
+    <section id='projects'>
+      <h1 v-animateonscroll="{
+        enterClass: 'animate-enter fade-in-10 slide-in-from-t-20 animate-duration-1000 ', once: true
+      }"
+        class='mt-45 text-2xl sm:text-2xl md:text-4xl lg:text-5xl text-center font-bold bg-gradient-to-r from-white via-purple-400 to-purple-600 bg-clip-text text-transparent leading-snug md:leading-snug lg:leading-snug'>
+        Meine Projekte</h1>
+      <div class='mt-10 grid grid-cols-1 gap-2 w-max mx-auto sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3'>
+
+        <div class="card w-80 sm:w-90 md:w-95 lg:w-100"
+          v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 slide-in-from-l-8 animate-duration-1000', once: true }">
+          <Carousel :value="bbfData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
+            class="relative custom-carousel">
+            <template #item="slotProps">
+              <div class="border border-surface-200 rounded-xl m-2 relative transition duration-100 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
                   bg-gradient-to-br from-gray-900/50 to-purple-900/30
                   backdrop-blur-sm">
-              <div class="mb-4">
-                <img :src="'https://primefaces.org/cdn/primevue/images/product/' + slotProps.data.image"
-                  :alt="slotProps.data.name" class="w-full h-60 object-cover rounded-t-xl" />
-              </div>
-              <div class="flex flex-col justify-between items-center">
-                <div class="font-medium text-white">{{ slotProps.data.name }}</div>
-                <div class="m-5 font-semibold text-sm text-white">
-                  Dies ist eine lange Beschreibung. Dies ist eine lange BeschreibungDies ist eine lange BeschreibungDies
-                  ist eine lange BeschreibungDies ist eine lange Beschreibung
+                <div class="mb-4">
+                  <img :src="'https://primefaces.org/cdn/primevue/images/product/' + slotProps.data.image"
+                    :alt="slotProps.data.name" class="w-full h-60 object-cover rounded-t-xl" />
+                </div>
+                <div class="flex flex-col justify-between items-center">
+                  <div class="font-medium text-white">{{ slotProps.data.name }}</div>
+                  <div class="m-5 font-semibold text-sm text-white">
+                    Dies ist eine lange Beschreibung. Dies ist eine lange BeschreibungDies ist eine lange
+                    BeschreibungDies
+                    ist eine lange BeschreibungDies ist eine lange Beschreibung
+                  </div>
                 </div>
               </div>
-            </div>
-          </template>
-        </Carousel>
+            </template>
+          </Carousel>
 
-      </div>
-      <div class="card" v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 animate-duration-1000', once: true }"
-        style="width: 400px;">
-        <Carousel :value="bbfData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
-          class="relative custom-carousel">
-          <template #item="slotProps">
-            <div class="border border-surface-200 rounded-xl m-2 relative transition delay-150 duration-300 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
+        </div>
+        <div class="card w-80 sm:w-90 md:w-95 lg:w-100"
+          v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 animate-duration-1000', once: true }">
+          <Carousel :value="bbfData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
+            class="relative custom-carousel">
+            <template #item="slotProps">
+              <div class="border border-surface-200 rounded-xl m-2 relative transition delay-150 duration-300 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
                   bg-gradient-to-br from-gray-900/50 to-purple-900/30
                   backdrop-blur-sm">
-              <div class="mb-4">
-                <img :src="'https://primefaces.org/cdn/primevue/images/product/' + slotProps.data.image"
-                  :alt="slotProps.data.name" class="w-full h-60 object-cover rounded-t-xl" />
-              </div>
-              <div class="flex flex-col justify-between items-center">
-                <div class="font-medium text-white">{{ slotProps.data.name }}</div>
-                <div class="m-5 font-semibold text-sm text-white">
-                  Dies ist eine lange Beschreibung. Dies ist eine lange BeschreibungDies ist eine lange BeschreibungDies
-                  ist eine lange BeschreibungDies ist eine lange Beschreibung
+                <div class="mb-4">
+                  <img :src="'https://primefaces.org/cdn/primevue/images/product/' + slotProps.data.image"
+                    :alt="slotProps.data.name" class="w-full h-60 object-cover rounded-t-xl" />
+                </div>
+                <div class="flex flex-col justify-between items-center">
+                  <div class="font-medium text-white">{{ slotProps.data.name }}</div>
+                  <div class="m-5 font-semibold text-sm text-white">
+                    Dies ist eine lange Beschreibung. Dies ist eine lange BeschreibungDies ist eine lange
+                    BeschreibungDies
+                    ist eine lange BeschreibungDies ist eine lange Beschreibung
+                  </div>
                 </div>
               </div>
-            </div>
-          </template>
-        </Carousel>
+            </template>
+          </Carousel>
 
-      </div>
-      <div class="card"
-        v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 slide-in-from-r-8 animate-duration-1000', once: true }"
-        style="width: 400px;">
-        <Carousel :value="bbfData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
-          class="relative custom-carousel">
-          <template #item="slotProps">
-            <div class="border border-surface-200 rounded-xl m-2 relative transition delay-150 duration-300 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
+        </div>
+        <div class="card w-80 sm:w-90 md:w-95 lg:w-100"
+          v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 slide-in-from-r-8 animate-duration-1000', once: true }">
+          <Carousel :value="bbfData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
+            class="relative custom-carousel">
+            <template #item="slotProps">
+              <div class="border border-surface-200 rounded-xl m-2 relative transition delay-150 duration-300 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
                   bg-gradient-to-br from-gray-900/50 to-purple-900/30
                   backdrop-blur-sm">
-              <div class="mb-4">
-                <img :src="'https://primefaces.org/cdn/primevue/images/product/' + slotProps.data.image"
-                  :alt="slotProps.data.name" class="w-full h-60 object-cover rounded-t-xl" />
-              </div>
-              <div class="flex flex-col justify-between items-center">
-                <div class="font-medium text-white">{{ slotProps.data.name }}</div>
-                <div class="m-5 font-semibold text-sm text-white">
-                  Dies ist eine lange Beschreibung. Dies ist eine lange BeschreibungDies ist eine lange BeschreibungDies
-                  ist eine lange BeschreibungDies ist eine lange Beschreibung
+                <div class="mb-4">
+                  <img :src="'https://primefaces.org/cdn/primevue/images/product/' + slotProps.data.image"
+                    :alt="slotProps.data.name" class="w-full h-60 object-cover rounded-t-xl" />
+                </div>
+                <div class="flex flex-col justify-between items-center">
+                  <div class="font-medium text-white">{{ slotProps.data.name }}</div>
+                  <div class="m-5 font-semibold text-sm text-white">
+                    Dies ist eine lange Beschreibung. Dies ist eine lange BeschreibungDies ist eine lange
+                    BeschreibungDies
+                    ist eine lange BeschreibungDies ist eine lange Beschreibung
+                  </div>
                 </div>
               </div>
-            </div>
-          </template>
-        </Carousel>
+            </template>
+          </Carousel>
 
-      </div>
-      <div class="card"
-        v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 slide-in-from-t-20 animate-duration-1000', once: true }"
-        style="width: 400px;">
-        <Carousel :value="bbfData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
-          class="relative custom-carousel">
-          <template #item="slotProps">
-            <div class="border border-surface-200 rounded-xl m-2 relative transition duration-100 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
+        </div>
+        <div class="card w-80 sm:w-90 md:w-95 lg:w-100"
+          v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 slide-in-from-t-20 animate-duration-1000', once: true }">
+          <Carousel :value="bbfData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
+            class="relative custom-carousel">
+            <template #item="slotProps">
+              <div class="border border-surface-200 rounded-xl m-2 relative transition duration-100 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
                   bg-gradient-to-br from-gray-900/50 to-purple-900/30
                   backdrop-blur-sm">
-              <div class="mb-4">
-                <img :src="'https://primefaces.org/cdn/primevue/images/product/' + slotProps.data.image"
-                  :alt="slotProps.data.name" class="w-full h-60 object-cover rounded-t-xl" />
-              </div>
-              <div class="flex flex-col justify-between items-center">
-                <div class="font-medium text-white">{{ slotProps.data.name }}</div>
-                <div class="m-5 font-semibold text-sm text-white">
-                  Dies ist eine lange Beschreibung. Dies ist eine lange BeschreibungDies ist eine lange BeschreibungDies
-                  ist eine lange BeschreibungDies ist eine lange Beschreibung
+                <div class="mb-4">
+                  <img :src="'https://primefaces.org/cdn/primevue/images/product/' + slotProps.data.image"
+                    :alt="slotProps.data.name" class="w-full h-60 object-cover rounded-t-xl" />
+                </div>
+                <div class="flex flex-col justify-between items-center">
+                  <div class="font-medium text-white">{{ slotProps.data.name }}</div>
+                  <div class="m-5 font-semibold text-sm text-white">
+                    Dies ist eine lange Beschreibung. Dies ist eine lange BeschreibungDies ist eine lange
+                    BeschreibungDies
+                    ist eine lange BeschreibungDies ist eine lange Beschreibung
+                  </div>
                 </div>
               </div>
-            </div>
-          </template>
-        </Carousel>
+            </template>
+          </Carousel>
 
-      </div>
-      <div class="card"
-        v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 zoom-in-50 slide-in-from-t-20 animate-duration-1000', once: true }"
-        style="width: 400px;">
-        <Carousel :value="bbfData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
-          class="relative custom-carousel">
-          <template #item="slotProps">
-            <div class="border border-surface-200 rounded-xl m-2 relative transition delay-150 duration-300 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
+        </div>
+        <div class="card w-80 sm:w-90 md:w-95 lg:w-100"
+          v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 zoom-in-50 slide-in-from-t-20 animate-duration-1000', once: true }">
+          <Carousel :value="bbfData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
+            class="relative custom-carousel">
+            <template #item="slotProps">
+              <div class="border border-surface-200 rounded-xl m-2 relative transition delay-150 duration-300 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
                   bg-gradient-to-br from-gray-900/50 to-purple-900/30
                   backdrop-blur-sm">
-              <div class="mb-4">
-                <img :src="'https://primefaces.org/cdn/primevue/images/product/' + slotProps.data.image"
-                  :alt="slotProps.data.name" class="w-full h-60 object-cover rounded-t-xl" />
-              </div>
-              <div class="flex flex-col justify-between items-center">
-                <div class="font-medium text-white">{{ slotProps.data.name }}</div>
-                <div class="m-5 font-semibold text-sm text-white">
-                  Dies ist eine lange Beschreibung. Dies ist eine lange BeschreibungDies ist eine lange BeschreibungDies
-                  ist eine lange BeschreibungDies ist eine lange Beschreibung
+                <div class="mb-4">
+                  <img :src="'https://primefaces.org/cdn/primevue/images/product/' + slotProps.data.image"
+                    :alt="slotProps.data.name" class="w-full h-60 object-cover rounded-t-xl" />
+                </div>
+                <div class="flex flex-col justify-between items-center">
+                  <div class="font-medium text-white">{{ slotProps.data.name }}</div>
+                  <div class="m-5 font-semibold text-sm text-white">
+                    Dies ist eine lange Beschreibung. Dies ist eine lange BeschreibungDies ist eine lange
+                    BeschreibungDies
+                    ist eine lange BeschreibungDies ist eine lange Beschreibung
+                  </div>
                 </div>
               </div>
-            </div>
-          </template>
-        </Carousel>
+            </template>
+          </Carousel>
 
-      </div>
-      <div class="card"
-        v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 slide-in-from-t-20 animate-duration-1000', once: true }"
-        style="width: 400px;">
-        <Carousel :value="bbfData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
-          class="relative custom-carousel">
-          <template #item="slotProps">
-            <div class="border border-surface-200 rounded-xl m-2 relative transition delay-150 duration-300 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
+        </div>
+        <div class="card w-80 sm:w-90 md:w-95 lg:w-100"
+          v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 slide-in-from-t-20 animate-duration-1000', once: true }">
+          <Carousel :value="bbfData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
+            class="relative custom-carousel">
+            <template #item="slotProps">
+              <div class="border border-surface-200 rounded-xl m-2 relative transition delay-150 duration-300 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
                   bg-gradient-to-br from-gray-900/50 to-purple-900/30
                   backdrop-blur-sm">
-              <div class="mb-4">
-                <img :src="'https://primefaces.org/cdn/primevue/images/product/' + slotProps.data.image"
-                  :alt="slotProps.data.name" class="w-full h-60 object-cover rounded-t-xl" />
-              </div>
-              <div class="flex flex-col justify-between items-center">
-                <div class="font-medium text-white">{{ slotProps.data.name }}</div>
-                <div class="m-5 font-semibold text-sm text-white">
-                  Dies ist eine lange Beschreibung. Dies ist eine lange BeschreibungDies ist eine lange BeschreibungDies
-                  ist eine lange BeschreibungDies ist eine lange Beschreibung
+                <div class="mb-4">
+                  <img :src="'https://primefaces.org/cdn/primevue/images/product/' + slotProps.data.image"
+                    :alt="slotProps.data.name" class="w-full h-60 object-cover rounded-t-xl" />
+                </div>
+                <div class="flex flex-col justify-between items-center">
+                  <div class="font-medium text-white">{{ slotProps.data.name }}</div>
+                  <div class="m-5 font-semibold text-sm text-white">
+                    Dies ist eine lange Beschreibung. Dies ist eine lange BeschreibungDies ist eine lange
+                    BeschreibungDies
+                    ist eine lange BeschreibungDies ist eine lange Beschreibung
+                  </div>
                 </div>
               </div>
-            </div>
-          </template>
-        </Carousel>
-
+            </template>
+          </Carousel>
+        </div>
       </div>
+    </section>
+
+    <!----Skills------------------------------------------------------------------->
+    <section id='skills'>
+      <h1 v-animateonscroll="{
+        enterClass: 'animate-enter fade-in-10 slide-in-from-t-20 animate-duration-1000 ', once: true
+      }"
+        class='mt-45 text-2xl sm:text-2xl md:text-4xl lg:text-5xl text-center font-bold bg-gradient-to-r from-white via-purple-400 to-purple-600 bg-clip-text text-transparent leading-snug md:leading-snug lg:leading-snug'>
+        Skills</h1>
+      <div class='mt-20 grid grid-cols-1 gap-4 w-max mx-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+        <Card class='!bg-black/50 border border-white'
+          v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 spin-in-45 slide-in-from-t-12 animate-duration-1000' }">
+          <template #content>
+            <div class='flex flex-col items-center'>
+              <img src="/icons/HTML5_Logo.png" alt="C Logo" width="60">
+
+              <p class="pt-5 text-white text-sm">
+                HTML
+              </p>
+            </div>
+
+          </template>
+        </Card>
+        <Card class='!bg-black/50 border border-white'
+          v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 spin-in-45 slide-in-from-t-12 animate-duration-1000' }">
+          <template #content>
+            <div class='flex flex-col items-center'>
+              <img src="/icons/css.png" alt="CSS Logo" width="60">
+
+              <p class="pt-5 text-white text-sm">
+                CSS
+              </p>
+            </div>
+
+          </template>
+        </Card>
+        <Card class='!bg-black/50 border border-white'
+          v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 spin-in-45 slide-in-from-t-12 animate-duration-1000' }">
+          <template #content>
+            <div class='flex flex-col items-center'>
+              <img src="/icons/vue.png" alt="PrimeVue Logo" width="60">
+
+              <p class="pt-5 text-white text-sm">
+                PrimeVue
+              </p>
+            </div>
+
+          </template>
+        </Card>
+        <Card class='!bg-black/50 border border-white'
+          v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 spin-in-45 slide-in-from-t-12 animate-duration-1000' }">
+          <template #content>
+            <div class='flex flex-col items-center'>
+              <img src="/icons/python.png" alt="Python Logo" width="60">
+              <p class="pt-5 text-white text-sm">
+                Python
+              </p>
+            </div>
+
+          </template>
+        </Card>
+        <Card class='!bg-black/50 border border-white'
+          v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 spin-in-45 slide-in-from-t-12 animate-duration-1000' }">
+          <template #content>
+            <div class='flex flex-col items-center'>
+              <img src="/icons/c.png" alt="C Logo" width="60">
+
+              <p class="pt-5 text-white text-sm">
+                C
+              </p>
+            </div>
+
+          </template>
+        </Card>
+        <Card class='!bg-black/50 border border-white'
+          v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 spin-in-45 slide-in-from-t-12 animate-duration-1000' }">
+          <template #content>
+            <div class='flex flex-col items-center'>
+              <img src="/icons/c++.png" alt="C++ Logo" width="60">
+
+              <p class="pt-5 text-white text-sm">
+                C++
+              </p>
+            </div>
+
+          </template>
+        </Card>
+
+
+        <Card class='!bg-black/50 border border-white'
+          v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 spin-in-45 slide-in-from-t-12 animate-duration-1000' }">
+          <template #content>
+            <div class='flex flex-col items-center'>
+              <img src="/icons/c_sharp.png" alt="C_Sharp Logo" width="60">
+
+              <p class="pt-5 text-white text-sm">
+                C#
+              </p>
+            </div>
+
+          </template>
+        </Card>
+
+        <Card class='!bg-black/50 border border-white'
+          v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 spin-in-45 slide-in-from-t-12 animate-duration-1000' }">
+          <template #content>
+            <div class='flex flex-col items-center'>
+              <img src="/icons/flutter.png" alt="Flutter Logo" width="60">
+              <p class="pt-5 text-white text-sm">
+                Flutter / Dart
+              </p>
+            </div>
+
+          </template>
+        </Card>
+      </div>
+    </section>
+    <section id='contact' class='mt-30 flex-col justify-center'>
+      <h1
+        class='text-2xl sm:text-2xl md:text-4xl lg:text-5xl text-center font-bold bg-gradient-to-r from-white via-purple-400 to-purple-600 bg-clip-text text-transparent'
+        v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 animate-duration-1000', leaveClass: 'animate-leave fade-out-0' }">
+        Contact</h1>
 
     </section>
+
   </div>
 </template>
 
