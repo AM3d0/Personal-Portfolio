@@ -145,8 +145,10 @@ onMounted(() => {
         du einen Einblick in meine Arbeit als Informatik-Student</h3>
       <div class="card flex flex-col items-center gap-4 mt-10">
         <div class="flex flex-wrap gap-4 justify-center">
-          <Button class='bg-purple-300! border border-white! rounded-2xl! text-white!' label="Contact Me"
-            icon="pi pi-user" />
+          <a href="https://github.com/AM3d0">
+            <Button class='bg-purple-300! border border-white! rounded-2xl! text-white!' label="GitHub"
+              icon="pi pi-github" />
+          </a>
           <a href="/pdfs/Harvard_Zertifikat.pdf" download>
             <Button class='bg-transparent! border border-purple-100! rounded-2xl! text-white!' label="Download CV"
               icon="pi pi-user" />
@@ -384,7 +386,7 @@ onMounted(() => {
       }"
         class='mt-45 text-2xl sm:text-2xl md:text-4xl lg:text-5xl text-center font-bold bg-gradient-to-r from-white via-purple-400 to-purple-600 bg-clip-text text-transparent leading-snug md:leading-snug lg:leading-snug'>
         Skills</h1>
-      <div class='mt-20 grid grid-cols-1 gap-4 w-max mx-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+      <div class='mt-20 grid grid-cols-1 gap-4 w-max mx-auto sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5'>
         <Card class='!bg-black/50 border border-white'
           v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 spin-in-45 slide-in-from-t-12 animate-duration-1000' }">
           <template #content>
@@ -418,7 +420,20 @@ onMounted(() => {
               <img src="/icons/vue.png" alt="PrimeVue Logo" width="60">
 
               <p class="pt-5 text-white text-sm">
-                PrimeVue
+                VueJs
+              </p>
+            </div>
+
+          </template>
+        </Card>
+        <Card class='!bg-black/50 border border-white'
+          v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 spin-in-45 slide-in-from-t-12 animate-duration-1000' }">
+          <template #content>
+            <div class='flex flex-col items-center'>
+              <img src="/icons/tailwind.png" alt="PrimeVue Logo" width="60">
+
+              <p class="pt-8 text-white text-sm">
+                Tailwind
               </p>
             </div>
 
@@ -483,8 +498,21 @@ onMounted(() => {
           <template #content>
             <div class='flex flex-col items-center'>
               <img src="/icons/flutter.png" alt="Flutter Logo" width="60">
-              <p class="pt-5 text-white text-sm">
+              <p class="pt-7 text-white text-sm">
                 Flutter / Dart
+              </p>
+            </div>
+
+          </template>
+        </Card>
+        <Card class='!bg-black/50 border border-white'
+          v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 spin-in-45 slide-in-from-t-12 animate-duration-1000' }">
+          <template #content>
+            <div class='flex flex-col items-center'>
+              <img src="/icons/sql.png" alt="PrimeVue Logo" width="60">
+
+              <p class="pt-4 text-white text-sm">
+                SQL
               </p>
             </div>
 
@@ -497,9 +525,52 @@ onMounted(() => {
         class='text-2xl sm:text-2xl md:text-4xl lg:text-5xl text-center font-bold bg-gradient-to-r from-white via-purple-400 to-purple-600 bg-clip-text text-transparent'
         v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 animate-duration-1000', leaveClass: 'animate-leave fade-out-0' }">
         Contact</h1>
+      <div class='flex flex-col mt-10 items-center gap-4'>
+        <Card class='!bg-black/50 border border-white w-72'
+          v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 slide-in-from-t-20 animate-duration-1000' }">
+          <template #content>
+            <div class='flex flex-row items-center gap-2'>
+              <i class="pr-4 pi pi-envelope text-white text-lg"></i>
+              <p class="text-white text-sm">
+                ahmedalamoudi19@gmail.com
+              </p>
+            </div>
+
+          </template>
+        </Card>
+        <Card class='!bg-black/50 border border-white w-72'
+          v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 slide-in-from-t-20 animate-duration-1000' }">
+          <template #content>
+            <a href="https://www.linkedin.com/in/ahmed-alamoudi-75940a220/">
+              <div class='flex flex-row items-center gap-2'>
+                <i class="pr-4 pi pi-linkedin text-white text-lg"></i>
+                <p class="text-white text-sm">
+                  LinkedIn
+                </p>
+              </div>
+            </a>
+          </template>
+        </Card>
+        <Card class='!bg-black/50 border border-white w-72'
+          v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 slide-in-from-b-20 animate-duration-1000' }">
+          <template #content>
+            <div class='flex flex-row items-center gap-2'>
+              <i class="pr-4 pi pi-map-marker text-white text-lg"></i>
+              <p class="text-white text-sm">
+                Deutschland, Freiburg
+              </p>
+            </div>
+
+          </template>
+        </Card>
+
+      </div>
 
     </section>
-
+    <h1
+      class='mt-20 pb-60 text-2xl sm:text-2xl md:text-4xl lg:text-5xl text-center font-bold bg-gradient-to-r from-white via-purple-400 to-purple-600 bg-clip-text text-transparent'
+      v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 animate-duration-1000', leaveClass: 'animate-leave fade-out-0' }">
+      Vielen Dank !</h1>
   </div>
 </template>
 
