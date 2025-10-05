@@ -1,8 +1,11 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { MyBBFService } from '@/services/MyBBFService.js';
+import { harvardService } from '@/services/harvardService.js';
+
 
 const bbfData = ref();
+const harvardData = ref();
 const responsiveOptions = ref([
   {
     breakpoint: '1400px',
@@ -96,6 +99,7 @@ onMounted(() => {
     if (index === fullText.length) clearInterval(interval);
   }, 50);
   bbfData.value = MyBBFService.getMyBBFData().slice(0, 3);
+  harvardData.value = harvardService.getHarvardData().slice(0, 5);
   setTimeout(initIntersectionObserver, 100);
 });
 </script>
@@ -229,18 +233,20 @@ onMounted(() => {
 
         <div class="card w-80 sm:w-90 md:w-95 lg:w-100"
           v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 slide-in-from-l-8 animate-duration-1000', once: true }">
-          <Carousel :value="bbfData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
+          <Carousel :value="harvardData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
             class="relative custom-carousel">
             <template #item="slotProps">
               <div class="border border-surface-200 rounded-xl m-2 relative transition duration-100 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
                   bg-gradient-to-br from-gray-900/50 to-purple-900/30
                   backdrop-blur-sm">
                 <div class="mb-4">
-                  <img :src="'https://primefaces.org/cdn/primevue/images/product/' + slotProps.data.image"
+                  <img :src="'/images/harvard_images/' + slotProps.data.image"
                     :alt="slotProps.data.name" class="w-full h-60 object-cover rounded-t-xl" />
                 </div>
                 <div class="flex flex-col justify-between items-center">
                   <div class="font-medium text-white">{{ slotProps.data.name }}</div>
+                  <div class="font-medium text-white">-</div>
+                  <div class="font-medium text-white">{{ slotProps.data.topic }}</div>
                   <div class="m-5 font-semibold text-sm text-white">
                     Dies ist eine lange Beschreibung. Dies ist eine lange BeschreibungDies ist eine lange
                     BeschreibungDies
