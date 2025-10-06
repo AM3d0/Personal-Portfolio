@@ -2,10 +2,14 @@
 import { ref, onMounted } from "vue";
 import { MyBBFService } from '@/services/MyBBFService.js';
 import { harvardService } from '@/services/harvardService.js';
+import { tetrisService } from '@/services/tetrisService.js';
+import { cafeService } from '@/services/cafeService.js';
 
 
 const bbfData = ref();
 const harvardData = ref();
+const tetrisData = ref();
+const cafeData = ref();
 const responsiveOptions = ref([
   {
     breakpoint: '1400px',
@@ -99,6 +103,8 @@ onMounted(() => {
     if (index === fullText.length) clearInterval(interval);
   }, 50);
   bbfData.value = MyBBFService.getMyBBFData().slice(0, 3);
+  tetrisData.value = tetrisService.getTetrisData().slice(0, 3);
+  cafeData.value = cafeService.getCafeData().slice(0, 3);
   harvardData.value = harvardService.getHarvardData().slice(0, 5);
   setTimeout(initIntersectionObserver, 100);
 });
@@ -240,8 +246,8 @@ onMounted(() => {
                   bg-gradient-to-br from-gray-900/50 to-purple-900/30
                   backdrop-blur-sm">
                 <div class="mb-4">
-                  <img :src="'/images/harvard_images/' + slotProps.data.image"
-                    :alt="slotProps.data.name" class="w-full h-60 object-cover rounded-t-xl" />
+                  <img :src="'/images/harvard_images/' + slotProps.data.image" :alt="slotProps.data.name"
+                    class="w-full h-60 object-cover rounded-t-xl" />
                 </div>
                 <div class="flex flex-col justify-between items-center">
                   <div class="font-medium text-white">{{ slotProps.data.name }}</div>
@@ -260,18 +266,22 @@ onMounted(() => {
         </div>
         <div class="card w-80 sm:w-90 md:w-95 lg:w-100"
           v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 animate-duration-1000', once: true }">
-          <Carousel :value="bbfData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
+          <Carousel :value="tetrisData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
             class="relative custom-carousel">
             <template #item="slotProps">
               <div class="border border-surface-200 rounded-xl m-2 relative transition delay-150 duration-300 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
                   bg-gradient-to-br from-gray-900/50 to-purple-900/30
                   backdrop-blur-sm">
                 <div class="mb-4">
-                  <img :src="'https://primefaces.org/cdn/primevue/images/product/' + slotProps.data.image"
-                    :alt="slotProps.data.name" class="w-full h-60 object-cover rounded-t-xl" />
+                  <video v-if="slotProps.data.type === 'video'" :src="'/videos/tetris_videos/' + slotProps.data.video"
+                    class="w-full h-60 object-cover rounded-t-xl" autoplay loop muted playsinline></video>
+                  <img v-else :src="'/images/tetris_images/' + slotProps.data.image" :alt="slotProps.data.name"
+                    class="w-full h-60 object-cover rounded-t-xl" />
                 </div>
                 <div class="flex flex-col justify-between items-center">
                   <div class="font-medium text-white">{{ slotProps.data.name }}</div>
+                  <div class="font-medium text-white">-</div>
+                  <div class="font-medium text-white">{{ slotProps.data.topic }}</div>
                   <div class="m-5 font-semibold text-sm text-white">
                     Dies ist eine lange Beschreibung. Dies ist eine lange BeschreibungDies ist eine lange
                     BeschreibungDies
@@ -284,19 +294,23 @@ onMounted(() => {
 
         </div>
         <div class="card w-80 sm:w-90 md:w-95 lg:w-100"
-          v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 slide-in-from-r-8 animate-duration-1000', once: true }">
-          <Carousel :value="bbfData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
+          v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 animate-duration-1000', once: true }">
+          <Carousel :value="cafeData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
             class="relative custom-carousel">
             <template #item="slotProps">
               <div class="border border-surface-200 rounded-xl m-2 relative transition delay-150 duration-300 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
                   bg-gradient-to-br from-gray-900/50 to-purple-900/30
                   backdrop-blur-sm">
                 <div class="mb-4">
-                  <img :src="'https://primefaces.org/cdn/primevue/images/product/' + slotProps.data.image"
-                    :alt="slotProps.data.name" class="w-full h-60 object-cover rounded-t-xl" />
+                  <video v-if="slotProps.data.type === 'video'" :src="'/videos/cafe_videos/' + slotProps.data.video"
+                    class="w-full h-60 object-cover rounded-t-xl" autoplay loop muted playsinline></video>
+                  <img v-else :src="'/images/cafe_images/' + slotProps.data.image" :alt="slotProps.data.name"
+                    class="w-full h-60 object-cover rounded-t-xl" />
                 </div>
                 <div class="flex flex-col justify-between items-center">
                   <div class="font-medium text-white">{{ slotProps.data.name }}</div>
+                  <div class="font-medium text-white">-</div>
+                  <div class="font-medium text-white">{{ slotProps.data.topic }}</div>
                   <div class="m-5 font-semibold text-sm text-white">
                     Dies ist eine lange Beschreibung. Dies ist eine lange BeschreibungDies ist eine lange
                     BeschreibungDies
