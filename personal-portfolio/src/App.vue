@@ -244,10 +244,16 @@ onMounted(() => {
             <template #item="slotProps">
               <div class="border border-surface-200 rounded-xl m-2 relative transition duration-100 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
                   bg-gradient-to-br from-gray-900/50 to-purple-900/30
-                  backdrop-blur-sm">
-                <div class="mb-4">
+                  backdrop-blur-sm group">
+                <div class="mb-0 relative">
                   <img :src="'/images/harvard_images/' + slotProps.data.image" :alt="slotProps.data.name"
-                    class="w-full h-60 object-cover rounded-t-xl" />
+                    class="w-full h-60 object-cover rounded-t-xl transition duration-300" />
+                  <a href="https://github.com/AM3d0/Harvard-CS50x">
+                    <Button class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+           !bg-purple-600 !border !border-white !rounded-xl 
+           !text-white opacity-0 group-hover:opacity-100 
+           transition duration-300 px-4" label="GitHub" icon="pi pi-github" />
+                  </a>
                 </div>
                 <div class="flex flex-col justify-between items-center">
                   <div class="font-medium text-white">{{ slotProps.data.name }}</div>
@@ -269,23 +275,27 @@ onMounted(() => {
           <Carousel :value="tetrisData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
             class="relative custom-carousel">
             <template #item="slotProps">
-              <div class="border border-surface-200 rounded-xl m-2 relative transition delay-150 duration-300 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
+              <div class="border group border-surface-200 rounded-xl m-2 relative transition delay-150 duration-300 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
                   bg-gradient-to-br from-gray-900/50 to-purple-900/30
-                  backdrop-blur-sm">
-                <div class="mb-4">
+                  backdrop-blur-sm group">
+                <div class="mb-0 relative">
                   <video v-if="slotProps.data.type === 'video'" :src="'/videos/tetris_videos/' + slotProps.data.video"
                     class="w-full h-60 object-cover rounded-t-xl" autoplay loop muted playsinline></video>
                   <img v-else :src="'/images/tetris_images/' + slotProps.data.image" :alt="slotProps.data.name"
                     class="w-full h-60 object-cover rounded-t-xl" />
+                  <a href="https://github.com/AM3d0/Harvard-CS50x">
+                    <Button class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+           !bg-purple-600 !border !border-white !rounded-xl 
+           !text-white opacity-0 group-hover:opacity-100 
+           transition duration-300 px-4" label="GitHub" icon="pi pi-github" />
+                  </a>
                 </div>
-                <div class="flex flex-col justify-between items-center">
-                  <div class="font-medium text-white">{{ slotProps.data.name }}</div>
-                  <div class="font-medium text-white">-</div>
+                <div class="-mt-4 flex flex-col justify-between items-center">
+                  <div class="-mb-2 font-medium text-white">{{ slotProps.data.name }}</div>
+                  <div class="-mb-2 font-medium text-white">-</div>
                   <div class="font-medium text-white">{{ slotProps.data.topic }}</div>
-                  <div class="m-5 font-semibold text-sm text-white">
-                    Dies ist eine lange Beschreibung. Dies ist eine lange BeschreibungDies ist eine lange
-                    BeschreibungDies
-                    ist eine lange BeschreibungDies ist eine lange Beschreibung
+                  <div class="m-3 font-semibold text-sm text-white">
+                    {{ slotProps.data.description }}
                   </div>
                 </div>
               </div>
@@ -300,21 +310,25 @@ onMounted(() => {
             <template #item="slotProps">
               <div class="border border-surface-200 rounded-xl m-2 relative transition delay-150 duration-300 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
                   bg-gradient-to-br from-gray-900/50 to-purple-900/30
-                  backdrop-blur-sm">
-                <div class="mb-4">
+                  backdrop-blur-sm group">
+                <div class="mb-0 relative">
                   <video v-if="slotProps.data.type === 'video'" :src="'/videos/cafe_videos/' + slotProps.data.video"
                     class="w-full h-60 object-cover rounded-t-xl" autoplay loop muted playsinline></video>
                   <img v-else :src="'/images/cafe_images/' + slotProps.data.image" :alt="slotProps.data.name"
                     class="w-full h-60 object-cover rounded-t-xl" />
+                  <a href="https://github.com/AM3d0/Harvard-CS50x">
+                    <Button class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+           !bg-purple-600 !border !border-white !rounded-xl 
+           !text-white opacity-0 group-hover:opacity-100 
+           transition duration-300 px-4" label="GitHub" icon="pi pi-github" />
+                  </a>
                 </div>
-                <div class="flex flex-col justify-between items-center">
-                  <div class="font-medium text-white">{{ slotProps.data.name }}</div>
-                  <div class="font-medium text-white">-</div>
+                <div class="-mt-4 flex flex-col justify-between items-center">
+                  <div class="-mb-2 font-medium text-white">{{ slotProps.data.name }}</div>
+                  <div class="-mb-2 font-medium text-white">-</div>
                   <div class="font-medium text-white">{{ slotProps.data.topic }}</div>
-                  <div class="m-5 font-semibold text-sm text-white">
-                    Dies ist eine lange Beschreibung. Dies ist eine lange BeschreibungDies ist eine lange
-                    BeschreibungDies
-                    ist eine lange BeschreibungDies ist eine lange Beschreibung
+                  <div class="m-3 font-semibold text-sm text-white">
+                    {{ slotProps.data.description }}
                   </div>
                 </div>
               </div>
@@ -329,10 +343,16 @@ onMounted(() => {
             <template #item="slotProps">
               <div class="border border-surface-200 rounded-xl m-2 relative transition duration-100 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
                   bg-gradient-to-br from-gray-900/50 to-purple-900/30
-                  backdrop-blur-sm">
-                <div class="mb-4">
+                  backdrop-blur-sm group">
+                <div class="mb-0 relative">
                   <img :src="'https://primefaces.org/cdn/primevue/images/product/' + slotProps.data.image"
                     :alt="slotProps.data.name" class="w-full h-60 object-cover rounded-t-xl" />
+                  <a href="https://github.com/AM3d0/Harvard-CS50x">
+                    <Button class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+           !bg-purple-600 !border !border-white !rounded-xl 
+           !text-white opacity-0 group-hover:opacity-100 
+           transition duration-300 px-4" label="GitHub" icon="pi pi-github" />
+                  </a>
                 </div>
                 <div class="flex flex-col justify-between items-center">
                   <div class="font-medium text-white">{{ slotProps.data.name }}</div>
@@ -354,10 +374,16 @@ onMounted(() => {
             <template #item="slotProps">
               <div class="border border-surface-200 rounded-xl m-2 relative transition delay-150 duration-300 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
                   bg-gradient-to-br from-gray-900/50 to-purple-900/30
-                  backdrop-blur-sm">
-                <div class="mb-4">
+                  backdrop-blur-sm group">
+                <div class="mb-0 relative">
                   <img :src="'https://primefaces.org/cdn/primevue/images/product/' + slotProps.data.image"
                     :alt="slotProps.data.name" class="w-full h-60 object-cover rounded-t-xl" />
+                  <a href="https://github.com/AM3d0/Harvard-CS50x">
+                    <Button class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+           !bg-purple-600 !border !border-white !rounded-xl 
+           !text-white opacity-0 group-hover:opacity-100 
+           transition duration-300 px-4" label="GitHub" icon="pi pi-github" />
+                  </a>
                 </div>
                 <div class="flex flex-col justify-between items-center">
                   <div class="font-medium text-white">{{ slotProps.data.name }}</div>
@@ -379,17 +405,21 @@ onMounted(() => {
             <template #item="slotProps">
               <div class="border border-surface-200 rounded-xl m-2 relative transition delay-150 duration-300 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
                   bg-gradient-to-br from-gray-900/50 to-purple-900/30
-                  backdrop-blur-sm">
-                <div class="mb-4">
+                  backdrop-blur-sm group">
+                <div class="mb-0 relative">
                   <img :src="'https://primefaces.org/cdn/primevue/images/product/' + slotProps.data.image"
                     :alt="slotProps.data.name" class="w-full h-60 object-cover rounded-t-xl" />
+                  <a href="https://github.com/AM3d0/Harvard-CS50x">
+                    <Button class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+           !bg-purple-600 !border !border-white !rounded-xl 
+           !text-white opacity-0 group-hover:opacity-100 
+           transition duration-300 px-4" label="GitHub" icon="pi pi-github" />
+                  </a>
                 </div>
                 <div class="flex flex-col justify-between items-center">
                   <div class="font-medium text-white">{{ slotProps.data.name }}</div>
                   <div class="m-5 font-semibold text-sm text-white">
-                    Dies ist eine lange Beschreibung. Dies ist eine lange BeschreibungDies ist eine lange
-                    BeschreibungDies
-                    ist eine lange BeschreibungDies ist eine lange Beschreibung
+                    {{ slotProps.data.description }}
                   </div>
                 </div>
               </div>
