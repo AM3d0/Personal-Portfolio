@@ -4,6 +4,7 @@ export const cafeService = {
             {
                 id: '1000',
                 name: 'Cafe',
+                type: 'image',
                 topic: 'Vorstellung',
                 description: 'Eine App für Cafés, mit der Gäste Bestellungen digital und bequem aufgeben können. Die Bestellungen werden automatisch an die Küche weitergeleitet und dort verarbeitet.',
                 image: 'cafe.jpeg',

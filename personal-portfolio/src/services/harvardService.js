@@ -7,6 +7,7 @@ export const harvardService = {
                 topic: 'Vorstellung',
                 description: 'Ein 11-wöchiger Harvard-Kurs mit Vorlesungen, Programmieraufgaben und einem Abschlussprojekt. Behandelt werden Algorithmen, Datenstrukturen, C/C++, Python, SQL und Webentwicklung.',
                 image: 'harvard.png',
+                
 
             },
             {
