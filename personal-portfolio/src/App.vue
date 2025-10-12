@@ -4,12 +4,14 @@ import { MyBBFService } from '@/services/MyBBFService.js';
 import { harvardService } from '@/services/harvardService.js';
 import { tetrisService } from '@/services/tetrisService.js';
 import { cafeService } from '@/services/cafeService.js';
+import { domineonService } from '@/services/domineonService.js';
 
 
 const bbfData = ref();
 const harvardData = ref();
 const tetrisData = ref();
 const cafeData = ref();
+const domineonData = ref();
 const responsiveOptions = ref([
   {
     breakpoint: '1400px',
@@ -106,6 +108,7 @@ onMounted(() => {
   tetrisData.value = tetrisService.getTetrisData().slice(0, 3);
   cafeData.value = cafeService.getCafeData().slice(0, 3);
   harvardData.value = harvardService.getHarvardData().slice(0, 5);
+  domineonData.value = domineonService.getDomineonData().slice(0, 5);
   setTimeout(initIntersectionObserver, 100);
 });
 </script>
@@ -255,14 +258,12 @@ onMounted(() => {
            transition duration-300 px-4" label="GitHub" icon="pi pi-github" />
                   </a>
                 </div>
-                <div class="flex flex-col justify-between items-center">
-                  <div class="font-medium text-white">{{ slotProps.data.name }}</div>
-                  <div class="font-medium text-white">-</div>
+                <div class="-mt-4 flex flex-col justify-between items-center">
+                  <div class="-mb-2 font-medium text-white">{{ slotProps.data.name }}</div>
+                  <div class="-mb-2 font-medium text-white">-</div>
                   <div class="font-medium text-white">{{ slotProps.data.topic }}</div>
-                  <div class="m-5 font-semibold text-sm text-white">
-                    Dies ist eine lange Beschreibung. Dies ist eine lange BeschreibungDies ist eine lange
-                    BeschreibungDies
-                    ist eine lange BeschreibungDies ist eine lange Beschreibung
+                  <div class="m-3 font-semibold text-sm text-white">
+                    {{ slotProps.data.description }}
                   </div>
                 </div>
               </div>
@@ -338,7 +339,7 @@ onMounted(() => {
         </div>
         <div class="card w-80 sm:w-90 md:w-95 lg:w-100"
           v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 slide-in-from-t-20 animate-duration-1000', once: true }">
-          <Carousel :value="bbfData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
+          <Carousel :value="domineonData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
             class="relative custom-carousel">
             <template #item="slotProps">
               <div class="border border-surface-200 rounded-xl m-2 relative transition duration-100 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
