@@ -3,39 +3,36 @@ export const MyBBFService = {
         return [
             {
                 id: '1000',
-                code: 'f230fh0g3',
-                name: 'Bamboo Watch',
-                description: 'Product Description',
-                image: 'bamboo-watch.jpg',
-                price: 65,
-                category: 'Accessories',
-                quantity: 24,
-                inventoryStatus: 'INSTOCK',
-                rating: 5
+                name: 'myBBF - App',
+                topic: 'Vorstellung',
+                description: 'Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon!',
+                image: 'bbf_logo.png',
+                type: 'image'
             },
             {
-                id: '1001',
-                code: 'nvklal433',
-                name: 'Black Watch',
-                description: 'Product Description',
-                image: 'black-watch.jpg',
-                price: 72,
-                category: 'Accessories',
-                quantity: 61,
-                inventoryStatus: 'INSTOCK',
-                rating: 4
+                id: '1000',
+                name: 'myBBF - App',
+                topic: 'Registrierung',
+                description: 'Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon!',
+                video: 'test3.mp4',
+                type: 'video'
             },
             {
-                id: '1002',
-                code: 'zz21cz3c1',
-                name: 'Blue Band',
-                description: 'Product Description',
-                image: 'blue-band.jpg',
-                price: 79,
-                category: 'Fitness',
-                quantity: 2,
-                inventoryStatus: 'LOWSTOCK',
-                rating: 3
-            },]
+                id: '1000',
+                name: 'myBBF - App',
+                topic: 'Prayer Page',
+                description: 'Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon!',
+                video: 'prayerPage.mp4',
+                type: 'video'
+            },
+            {
+                id: '1000',
+                name: 'myBBF - App',
+                topic: 'Calendar Page',
+                description: 'Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon! Coming Soon!',
+                video: 'calendarPage.mp4',
+                type: 'video'
+            },
+            ]
     }
 }

@@ -106,7 +106,7 @@ onMounted(() => {
     index++;
     if (index === fullText.length) clearInterval(interval);
   }, 50);
-  bbfData.value = MyBBFService.getMyBBFData().slice(0, 3);
+  bbfData.value = MyBBFService.getMyBBFData().slice(0, 4);
   tetrisData.value = tetrisService.getTetrisData().slice(0, 3);
   tttData.value = tttService.getTttData().slice(0, 2);
   cafeData.value = cafeService.getCafeData().slice(0, 3);
@@ -415,18 +415,22 @@ onMounted(() => {
                   bg-gradient-to-br from-gray-900/50 to-purple-900/30
                   backdrop-blur-sm group">
                 <div class="mb-0 relative">
-                  <img :src="'https://primefaces.org/cdn/primevue/images/product/' + slotProps.data.image"
-                    :alt="slotProps.data.name" class="w-full h-60 object-cover rounded-t-xl" />
-                  <a href="https://github.com/AM3d0/Harvard-CS50x">
+                  <video v-if="slotProps.data.type === 'video'" :src="'/videos/bbf_videos/' + slotProps.data.video"
+                    class="w-full h-60 object-cover rounded-t-xl" autoplay loop muted playsinline></video>
+                  <img v-else :src="'/images/bbf_images/' + slotProps.data.image" :alt="slotProps.data.name"
+                    class="w-full h-60 object-cover rounded-t-xl" />
+                  <a href="https://github.com/Emredinho61/bbf">
                     <Button class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
            !bg-purple-600 !border !border-white !rounded-xl 
            !text-white opacity-0 group-hover:opacity-100 
            transition duration-300 px-4" label="GitHub" icon="pi pi-github" />
                   </a>
                 </div>
-                <div class="flex flex-col justify-between items-center">
-                  <div class="font-medium text-white">{{ slotProps.data.name }}</div>
-                  <div class="m-5 font-semibold text-sm text-white">
+                <div class="-mt-4 flex flex-col justify-between items-center">
+                  <div class="-mb-2 font-medium text-white">{{ slotProps.data.name }}</div>
+                  <div class="-mb-2 font-medium text-white">-</div>
+                  <div class="font-medium text-white">{{ slotProps.data.topic }}</div>
+                  <div class="m-3 font-semibold text-sm text-white">
                     {{ slotProps.data.description }}
                   </div>
                 </div>
