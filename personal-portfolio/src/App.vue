@@ -106,7 +106,7 @@ onMounted(() => {
     index++;
     if (index === fullText.length) clearInterval(interval);
   }, 50);
-  bbfData.value = MyBBFService.getMyBBFData().slice(0, 4);
+  bbfData.value = MyBBFService.getMyBBFData().slice(0, 11);
   tetrisData.value = tetrisService.getTetrisData().slice(0, 3);
   tttData.value = tttService.getTttData().slice(0, 2);
   cafeData.value = cafeService.getCafeData().slice(0, 3);
@@ -124,8 +124,8 @@ onMounted(() => {
       <!----Image + Name------------------------------------------------------------------->
       <template #start>
         <div class="flex items-center gap-4">
-          <Avatar class="rounded-full" image='/images/pb.jpeg'
-            style="height:50px; width: 50px; border-radius:9999px; overflow:hidden;" />
+          <Avatar class="rounded-full" image='/images/icon.png'
+            style="height:80px; width: 80px; border-radius:9999px; overflow:hidden;" />
           <h1 class='text-xl sm:text-3xl font-mono tracking-widest text-purple-500 ml-4 drop-shadow-[0_0_10px_#a855f7]'>
             Ahmed
             Alamoudi</h1>
@@ -165,7 +165,7 @@ onMounted(() => {
             <Button class='bg-purple-300! border border-white! rounded-2xl! text-white!' label="GitHub"
               icon="pi pi-github" />
           </a>
-          <a href="/pdfs/Harvard_Zertifikat.pdf" download>
+          <a href="/pdfs/Bewerbungsvorlage.pdf" download>
             <Button class='bg-transparent! border border-purple-100! rounded-2xl! text-white!' label="Download CV"
               icon="pi pi-user" />
           </a>
@@ -448,8 +448,8 @@ onMounted(() => {
       }"
         class='mt-45 text-2xl sm:text-2xl md:text-4xl lg:text-5xl text-center font-bold bg-gradient-to-r from-white via-purple-400 to-purple-600 bg-clip-text text-transparent leading-snug md:leading-snug lg:leading-snug'>
         Skills</h1>
-      <div class='mt-20 grid grid-cols-1 gap-4 w-max mx-auto sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5'>
-        <Card class='!bg-black/50 border border-white'
+      <div class='mt-20 grid grid-cols-2 gap-4 w-max mx-auto sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5'>
+        <Card class='!bg-black/50 border border-white w-24 sm:w-28 md:w-32 lg:w-40'>
           v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 spin-in-45 slide-in-from-t-12 animate-duration-1000' }">
           <template #content>
             <div class='flex flex-col items-center'>
@@ -462,7 +462,7 @@ onMounted(() => {
 
           </template>
         </Card>
-        <Card class='!bg-black/50 border border-white'
+        <Card class='!bg-black/50 border border-white w-24 sm:w-28 md:w-32 lg:w-40'>
           v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 spin-in-45 slide-in-from-t-12 animate-duration-1000' }">
           <template #content>
             <div class='flex flex-col items-center'>
@@ -475,7 +475,8 @@ onMounted(() => {
 
           </template>
         </Card>
-        <Card class='!bg-black/50 border border-white'
+        <Card class='!bg-black/50 border border-white w-24 sm:w-28 md:w-32 lg:w-40'>
+
           v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 spin-in-45 slide-in-from-t-12 animate-duration-1000' }">
           <template #content>
             <div class='flex flex-col items-center'>
@@ -488,7 +489,8 @@ onMounted(() => {
 
           </template>
         </Card>
-        <Card class='!bg-black/50 border border-white'
+        <Card class='!bg-black/50 border border-white w-24 sm:w-28 md:w-32 lg:w-40'>
+
           v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 spin-in-45 slide-in-from-t-12 animate-duration-1000' }">
           <template #content>
             <div class='flex flex-col items-center'>
@@ -501,7 +503,8 @@ onMounted(() => {
 
           </template>
         </Card>
-        <Card class='!bg-black/50 border border-white'
+        <Card class='!bg-black/50 border border-white w-24 sm:w-28 md:w-32 lg:w-40'>
+
           v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 spin-in-45 slide-in-from-t-12 animate-duration-1000' }">
           <template #content>
             <div class='flex flex-col items-center'>
@@ -513,7 +516,8 @@ onMounted(() => {
 
           </template>
         </Card>
-        <Card class='!bg-black/50 border border-white'
+        <Card class='!bg-black/50 border border-white w-24 sm:w-28 md:w-32 lg:w-40'>
+
           v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 spin-in-45 slide-in-from-t-12 animate-duration-1000' }">
           <template #content>
             <div class='flex flex-col items-center'>
@@ -526,7 +530,8 @@ onMounted(() => {
 
           </template>
         </Card>
-        <Card class='!bg-black/50 border border-white'
+        <Card class='!bg-black/50 border border-white w-24 sm:w-28 md:w-32 lg:w-40'>
+
           v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 spin-in-45 slide-in-from-t-12 animate-duration-1000' }">
           <template #content>
             <div class='flex flex-col items-center'>
@@ -541,7 +546,8 @@ onMounted(() => {
         </Card>
 
 
-        <Card class='!bg-black/50 border border-white'
+        <Card class='!bg-black/50 border border-white w-24 sm:w-28 md:w-32 lg:w-40'>
+
           v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 spin-in-45 slide-in-from-t-12 animate-duration-1000' }">
           <template #content>
             <div class='flex flex-col items-center'>
@@ -555,7 +561,8 @@ onMounted(() => {
           </template>
         </Card>
 
-        <Card class='!bg-black/50 border border-white'
+        <Card class='!bg-black/50 border border-white w-24 sm:w-28 md:w-32 lg:w-40'>
+
           v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 spin-in-45 slide-in-from-t-12 animate-duration-1000' }">
           <template #content>
             <div class='flex flex-col items-center'>
@@ -567,7 +574,8 @@ onMounted(() => {
 
           </template>
         </Card>
-        <Card class='!bg-black/50 border border-white'
+        <Card class='!bg-black/50 border border-white w-24 sm:w-28 md:w-32 lg:w-40'>
+
           v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 spin-in-45 slide-in-from-t-12 animate-duration-1000' }">
           <template #content>
             <div class='flex flex-col items-center'>
