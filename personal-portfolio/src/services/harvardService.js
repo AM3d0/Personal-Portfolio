@@ -30,7 +30,7 @@ export const harvardService = {
                 id: '1000',
                 name: 'Harvard-CS50x',
                 topic: 'Speller',
-                description: 'In diesem Projekt wurde ein Programm entwickelt, das mithilfe einer Hash-Tabelle die Rechtschreibung einer Datei überprüft. Dabei werden Wörter effizient gespeichert und auf ihre Korrektheit geprüft.',
+                description: 'In diesem Projekt wurde ein Programm entwickelt, das mithilfe einer Hash-Tabelle die Rechtschreibung einer Datei überprüft, Wörter effizient speichert und ihre Korrektheit zuverlässig prüft.',
                 image: 'speller.png',
 
             },

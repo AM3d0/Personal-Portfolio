@@ -15,7 +15,7 @@ export const tttService = {
                 name: 'Tic-Tac-Toe vs KI',
                 type: 'video',
                 topic: 'Spielfluss',
-                description: 'Die KI nutzt den Minimax-Algorithmus, um optimal zu spielen. Dabei bewertet sie alle möglichen Züge und wählt den, der den bestmöglichen Ausgang garantiert.',
+                description: 'Die KI nutzt den Minimax-Algorithmus, bewertet alle möglichen Züge und wählt denjenigen aus, der den bestmöglichen Ausgang garantiert und den Gegner optimal blockiert.',
                 video: 'ttt.mp4',
 
             },

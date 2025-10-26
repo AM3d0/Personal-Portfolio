@@ -5,7 +5,7 @@ export const domineonService = {
                 id: '1000',
                 name: 'Domineon',
                 topic: 'Vorstellung',
-                description: 'ALIEN DOMINEON ist ein Rogue-Like mit Tower-Defense- und Mining-Phasen. Tags wird abgebaut, nachts verteidigt – beide Phasen beeinflussen sich gegenseitig.',
+                description: 'ALIEN DOMINEON ist ein Rogue-Like mit Tower-Defense- und Mining-Phasen. Tags wird abgebaut, nachts verteidigt – beide Phasen beeinflussen sich gegenseitig und erfordern strategisches Handeln.',
                 image: 'title.png',
                 type: 'image',
 
@@ -14,7 +14,7 @@ export const domineonService = {
                 id: '1000',
                 name: 'Domineon',
                 topic: 'Spieler',
-                description: 'Der Spieler hat im Inventar eine Waffe und einen Bauplan, mit dem er Mauern aus verschiedenen Materialien sowie Verteidigungstürme errichten kann.',
+                description: 'Der Spieler hat im Inventar eine Waffe und einen Bauplan, mit dem er Mauern aus unterschiedlichen Materialien sowie verschiedene Verteidigungstürme strategisch errichten kann.',
                 video: 'Domineon_player.mp4',
                 type: 'video',
 
@@ -59,7 +59,7 @@ export const domineonService = {
                 id: '1000',
                 name: 'Domineon',
                 topic: 'Verlieren',
-                description: 'Das Spiel ist verloren, sobald gegnerische Einheiten den Powercore zerstört haben und die Energieversorgung der Basis vollständig zusammenbricht.',
+                description: 'Das Spiel ist verloren, sobald gegnerische Einheiten den Powercore zerstören und die Energieversorgung der Basis vollständig zusammenbricht, wodurch keine Verteidigung mehr möglich ist.',
                 video: 'domineon_losing1.mp4',
                 type: 'video',
 

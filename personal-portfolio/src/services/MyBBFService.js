@@ -29,7 +29,7 @@ export const MyBBFService = {
                 id: '1000',
                 name: 'myBBF - App',
                 topic: 'Gebetsseite',
-                description: 'Die Gebetszeitenseite zeigt die Zeiten der fünf täglichen Gebete. Für jedes Gebet kann man Benachrichtigungen und eine Vorab-Erinnerung aktivieren.',
+                description: 'Die Gebetszeitenseite zeigt die Zeiten der fünf täglichen Gebete. Für jedes Gebet kann man Benachrichtigungen und eine Vorab-Erinnerung aktivieren, um keine Gebetszeit zu verpassen.',
                 video: 'prayertimes1.mp4',
                 type: 'video'
             },
@@ -45,7 +45,7 @@ export const MyBBFService = {
                 id: '1000',
                 name: 'myBBF - App',
                 topic: 'Information',
-                description: 'Die Informationsseite zeigt Mitteilungen des Vereins an die Nutzer. Neue, noch nicht gelesene Informationen werden mit einer roten Markierung hervorgehoben.',
+                description: 'Die Informationsseite zeigt Mitteilungen des Vereins an die Nutzer. Neue, noch nicht gelesene Informationen werden mit einer roten Markierung hervorgehoben und bleiben so gut sichtbar.',
                 video: 'information.mp4',
                 type: 'video'
             },
@@ -61,7 +61,7 @@ export const MyBBFService = {
                 id: '1000',
                 name: 'myBBF - App',
                 topic: 'Bildungsseite',
-                description: 'Die Bildungsseite stellt die arabische Schule des Vereins vor, informiert über das Lernangebot und führt interessierte Nutzer direkt zur Anmeldung weiter.',
+                description: 'Die Bildungsseite stellt die arabische Schule des Vereins vor, informiert über das Lernangebot und führt interessierte Nutzer direkt zur Anmeldung weiter, um den Einstieg zu erleichtern.',
                 video: 'bildung.mp4',
                 type: 'video'
             },
