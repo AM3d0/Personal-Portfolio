@@ -11,7 +11,7 @@ export const tetrisService = {
             },
             {
                 id: '1000',
-                name: 'Harvard-CS50x',
+                name: 'Tetris',
                 type: 'video',
                 topic: 'Spielfluss',
                 description: 'Die fallenden Tetrominos können gedreht und positioniert werden. Sobald ein Teil platziert ist, erscheint das nächste. Vollständige Reihen verschwinden und bringen Punkte.',
@@ -20,7 +20,7 @@ export const tetrisService = {
             },
                         {
                 id: '1000',
-                name: 'Harvard-CS50x',
+                name: 'Tetris',
                 type: 'image',
                 topic: 'Screen',
                 description: 'Unter Punkt 1 sind Statistiken zu sehen, wie oft jedes Tetromino gespawnt wurde. Punkt 2 zeigt das Level, Punkt 3 die Punkte und das nächste Tetromino, Punkt 4 das Ghost-Tetromino.',

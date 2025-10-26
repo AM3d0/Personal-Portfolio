@@ -48,7 +48,7 @@ function getOffset() {
   } else if (window.innerWidth < 1024) {
     return 165;
   } else {
-    return 100;
+    return 110;
   }
 }
 
@@ -125,7 +125,7 @@ onMounted(() => {
       <template #start>
         <div class="flex items-center gap-4">
           <Avatar class="rounded-full" image='/images/icon.png'
-            style="height:80px; width: 80px; border-radius:9999px; overflow:hidden;" />
+            style="height: 65px; width: 65px; border-radius:9999px; overflow:hidden;" />
           <h1 class='text-xl sm:text-3xl font-mono tracking-widest text-purple-500 ml-4 drop-shadow-[0_0_10px_#a855f7]'>
             Ahmed
             Alamoudi</h1>
@@ -241,10 +241,10 @@ onMounted(() => {
       }"
         class='mt-45 text-2xl sm:text-2xl md:text-4xl lg:text-5xl text-center font-bold bg-gradient-to-r from-white via-purple-400 to-purple-600 bg-clip-text text-transparent leading-snug md:leading-snug lg:leading-snug'>
         Meine Projekte</h1>
-      <div class='mt-10 grid grid-cols-1 gap-2 w-max mx-auto sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3'>
+      <div class='mt-10 grid grid-cols-1 gap-2 w-max mx-auto sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3'>
 
         <div class="card w-80 sm:w-90 md:w-95 lg:w-100"
-          v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 slide-in-from-l-8 animate-duration-1000', once: true }">
+          v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 animate-duration-1000', once: true }">
           <Carousel :value="harvardData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
             class="relative custom-carousel">
             <template #item="slotProps">
@@ -279,7 +279,7 @@ onMounted(() => {
           <Carousel :value="tetrisData" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions"
             class="relative custom-carousel">
             <template #item="slotProps">
-              <div class="border group border-surface-200 rounded-xl m-2 relative transition delay-150 duration-300 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
+              <div class="border border-surface-200 rounded-xl m-2 relative transition delay-150 duration-300 ease-in-out hover:-translate-y-1 shadow hover:shadow-md hover:shadow-purple-500/25
                   bg-gradient-to-br from-gray-900/50 to-purple-900/30
                   backdrop-blur-sm group">
                 <div class="mb-0 relative">
