@@ -5,7 +5,7 @@ export const MyBBFService = {
                 id: '1000',
                 name: 'myBBF - App',
                 topic: 'Vorstellung',
-                description: 'Eine App für den Bildung und Begegnugsverein, ein unabhängiger, gemeinnütziger Verein, der sich am Gemeinschaftsleben beteiligen möchte.',
+                description: 'Eine App für den Bildung- und Begegnungsverein, einen unabhängigen, gemeinnützigen Verein, der sich aktiv am Gemeinschaftsleben beteiligt und lokale Projekte fördert.',
                 image: 'bbf_logo.png',
                 type: 'image'
             },
